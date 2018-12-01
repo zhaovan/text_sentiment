@@ -14,5 +14,9 @@
    
    "background": {
 	  "scripts": ["background.js"]
-	}
+	},
+
+
+  "permissions": ["tabs", "<all_urls>"]
+
   }
