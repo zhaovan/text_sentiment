@@ -2,5 +2,17 @@
     "name": "Text Sentiment",
     "version": "1.0",
     "description": "Making texting more friendly",
-    "manifest_version": 2
+    "manifest_version": 2,
+    "content_scripts": [
+	    {
+	      "matches": [
+	        "<all_urls>"
+	      ],
+	      "js": ["jquery-3.3.1.min.js", "content.js"]
+	    }
+	  ],
+   
+   "background": {
+	  "scripts": ["background.js"]
+	}
   }
