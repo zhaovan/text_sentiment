@@ -5,6 +5,7 @@
   "author": "isonlaxman <inos1199@gmail.com>",
   "main": "functions/__main__.js",
   "dependencies": {
+    "child_process": "^1.0.2",
     "lib": "^3.0.2",
     "xmlhttprequest": "^1.8.0"
   },
