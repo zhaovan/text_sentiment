@@ -1,9 +1,12 @@
-import sys
-# print sys.argv[0] prints test.py
-# print sys.argv[1] prints your_var_1
+from flask import Flask
+from flask_cors import CORS, cross_origin
 
-def hello():
-    print "Hi" + " " + sys.argv[1]
+app = Flask(__name__)
+CORS(app)
+
+@app.route('/output', methods=['GET'])
+def output():
+	return "HELLO IT WORKS"
 
 if __name__ == "__main__":
-    hello()
+	app.run()

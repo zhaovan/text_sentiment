@@ -1,5 +1,5 @@
 import tweepy
-import csv
+import json
 import pandas as pd
 import re
 
@@ -15,19 +15,16 @@ api = tweepy.API(auth, wait_on_rate_limit=True)
 # United Airlines
 # Open/Create a file to append data
 
-file_d = 'drunk.csv'
-file_s = 'sober.csv'
+file_d = 'drunk.json'
+file_s = 'sober.json'
 
-csvFile = open(file_d, 'a+')
-
-# Use csv Writer
-csvWriter = csv.writer(csvFile)
+csvFile = open(file_d, 'w+')
 
 query = "#wasted"
 # queries = ['sober']
 
 count = 0
-
+data = []
 
 res = tweepy.Cursor(api.search, q=query,
                     count=20000,
@@ -41,9 +38,26 @@ for tweet in res:
     if url:
         continue
 
-    csvWriter.writerow([str(tweet.created_at), tweet.text.encode(
-        'utf-8'), tweet.user.screen_name.encode('utf-8')])
-    print(count)
+    text = " ".join(re.findall("[a-zA-Z]+", tweet.text))
+    data.append(text)
     count = count + 1
 
+res = tweepy.Cursor(api.search, q='#drunk',
+                    count=20000,
+                    lang="en",
+                    show_user="true",
+                    since="2017-01-01").items()
+for tweet in res:
+    url = re.match(
+        '(?P<url>https?://[^\s]+)', tweet.text)
+
+    if url:
+        continue
+
+    text = " ".join(re.findall("[a-zA-Z]+", tweet.text))
+    data.append(text)
+    count = count + 1
+
+
+json.dump(data, csvFile)
 print(count)
