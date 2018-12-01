@@ -3,7 +3,7 @@ import sys
 # print sys.argv[1] prints your_var_1
 
 def hello():
-    print "Hi" + " " + sys.argv[1]
+    print "Hi"
 
 if __name__ == "__main__":
     hello()
