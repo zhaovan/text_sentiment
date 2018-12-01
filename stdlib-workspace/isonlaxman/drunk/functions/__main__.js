@@ -1,8 +1,14 @@
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
 /**
 * A basic Hello World function
-* @param {string} name Who you're saying hello to
-* @returns {string}
+* @param {string} url 
+* @returns {object}
 */
-module.exports = async (name = 'world', context) => {
-  return `hello ${name}`;
+
+module.exports = async (url = 'world', context) => {
+  var xmlhttp;
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("GET", url, true);
+  return xmlhttp;
 };
