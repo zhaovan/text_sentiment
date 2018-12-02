@@ -3,6 +3,7 @@
 import json
 import pandas as pd
 import os
+import pickle
 
 
 from sklearn.datasets import fetch_20newsgroups
@@ -35,3 +36,8 @@ X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
 clf = MultinomialNB().fit(X_train_tfidf, df.iloc[0:300000, 1])
 predicted = clf.predict(count_vect.transform(df.iloc[300001:, 0]))
 np.mean(predicted == df.iloc[300001:, 1])
+
+pickle.dump (clf, open("trained_nlp.p", "wb"))
+
+
+
