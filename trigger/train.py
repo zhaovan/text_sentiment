@@ -13,6 +13,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
 
 import numpy as np
+
 ask = pd.read_csv("../data/final_ask.csv", header=None)
 ask = ask.iloc[1:].drop_duplicates(subset=[0])
 college = pd.read_csv("../data/college_csv.csv",
@@ -37,7 +38,6 @@ clf = MultinomialNB().fit(X_train_tfidf, df.iloc[0:300000, 1])
 predicted = clf.predict(count_vect.transform(df.iloc[300001:, 0]))
 np.mean(predicted == df.iloc[300001:, 1])
 
-pickle.dump (clf, open("trained_nlp.p", "wb"))
-
-
-
+print(clf)
+pickle.dump(clf, open("trained_nlp.p", "wb"))
+pickle.dump(count_vect, open("caount_vec.p", "wb"))
