@@ -3,6 +3,7 @@
 import json
 import pandas as pd
 import os
+import pickle
 
 
 from sklearn.datasets import fetch_20newsgroups
@@ -10,6 +11,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
+
 
 import numpy as np
 
@@ -68,12 +70,13 @@ clf = MultinomialNB().fit(X_train_tfidf, df.iloc[0:400000, 1])
 
 #%%
 predicted = clf.predict(count_vect.transform(df.iloc[400001:, 0]))
-print(predicted)
 
 
 #%%
 np.mean(predicted == df.iloc[400001:, 1])
 
+
+pickle.dump (clf, open ('trained_nlp.p', 'wb'))
 
 #%%
 

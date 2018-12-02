@@ -50,20 +50,23 @@
 
 
 
-setInterval(function(){ console.log ("timeout");}, 3000);
+setInterval(function(){ console.log ("timeout 121");}, 3000);
 
-var inputs = Array.prototype.slice.call(document.querySelectorAll('input, textarea, span'));
+var inputs = Array.prototype.slice.call(document.querySelectorAll('input, textarea, [data-text]'));
 
 inputs.forEach(function(i) {
 
   	if (i.tagName.toLowerCase() == 'input' || i.tagName.toLowerCase() == 'textarea') {
       i.addEventListener("input", function(e) {
+      	console.log("works!!!!!");
+
           e.preventDefault();
           console.log(e.target.value);
       });
     } else {
-     	if (i.hasAttribute('data-text')) {
+     	if (i.hasAttribute('[data-text]')) {
         i.addEventListener("change", function(e) {
+        console.log("works~!!!");
           e.preventDefault();
           console.log(e.target.value);
       });
